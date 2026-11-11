@@ -1,0 +1,15 @@
+{
+	"schemaVersion": 1,
+	"id": "notextwall-test",
+	"version": "1.0.0",
+	"name": "No Text Wall tests",
+	"environment": "client",
+	"entrypoints": {
+		"fabric-client-gametest": [
+			"net.vsh33.notextwall.test.NoTextWallClientTest"
+		]
+	},
+	"depends": {
+		"notextwall": "*"
+	}
+}

@@ -1,0 +1,36 @@
+{
+	"schemaVersion": 1,
+	"id": "notextwall",
+	"version": "${version}",
+	"name": "No Text Wall",
+	"description": "Client-side: hides chat and server messages that are too long (walls of text pasted through Discord bridges etc.). Hover the notice to preview, click to reveal. Configurable with /notextwall or Mod Menu + Cloth Config. English and Polish.",
+	"authors": [
+		"Vasha"
+	],
+	"contact": {
+		"homepage": "https://modrinth.com/mod/no-text-wall",
+		"sources": "https://github.com/VashaTS/no-text-wall",
+		"issues": "https://github.com/VashaTS/no-text-wall/issues"
+	},
+	"license": "MIT",
+	"icon": "assets/notextwall/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"net.vsh33.notextwall.NoTextWall"
+		],
+		"modmenu": [
+			"net.vsh33.notextwall.compat.ModMenuIntegration"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.20.1",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"cloth-config": "*",
+		"modmenu": "*"
+	}
+}

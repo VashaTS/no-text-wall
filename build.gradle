@@ -1,0 +1,103 @@
+plugins {
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
+	id 'maven-publish'
+}
+
+version = project.version
+group = project.maven_group
+
+base {
+	archivesName = project.archives_base_name
+}
+
+repositories {
+	// Optional integrations (Cloth Config, Mod Menu) are pulled from Modrinth's Maven.
+	exclusiveContent {
+		forRepository {
+			maven { name = "Modrinth"; url = "https://api.modrinth.com/maven" }
+		}
+		filter { includeGroup "maven.modrinth" }
+	}
+	mavenCentral()
+}
+
+loom {
+	mods {
+		"notextwall" {
+			sourceSet sourceSets.main
+		}
+	}
+}
+
+fabricApi {
+	// Client game test: starts a real client + singleplayer world and checks what ends up in chat.
+	// Run with: xvfb-run -a ./gradlew runClientGameTest
+	configureTests {
+		createSourceSet = true
+		modId = "notextwall-test"
+		enableGameTests = false
+		enableClientGameTests = true
+		eula = true
+	}
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+
+	// OPTIONAL at runtime: the mod only touches them when FabricLoader reports them as loaded.
+	compileOnly "maven.modrinth:cloth-config:${project.cloth_config_version}"
+	compileOnly "maven.modrinth:modmenu:${project.modmenu_version}"
+	if (project.findProperty("withConfigMods") == "true") {
+		// ./gradlew runClient -PwithConfigMods=true  -> try the Mod Menu / Cloth Config screen in dev
+		localRuntime "maven.modrinth:cloth-config:${project.cloth_config_version}"
+		localRuntime "maven.modrinth:modmenu:${project.modmenu_version}"
+	}
+
+	testImplementation platform("org.junit:junit-bom:5.13.4")
+	testImplementation "org.junit.jupiter:junit-jupiter"
+	testRuntimeOnly "org.junit.platform:junit-platform-launcher"
+}
+
+test {
+	useJUnitPlatform()
+}
+
+processResources {
+	def version = project.version
+	inputs.property "version", version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": version
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 25
+}
+
+java {
+	withSourcesJar()
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
+}
+
+jar {
+	def projectName = project.name
+	inputs.property "projectName", projectName
+
+	from("LICENSE") {
+		rename { "${it}_$projectName"}
+	}
+}
+
+publishing {
+	publications {
+		create("mavenJava", MavenPublication) {
+			from components.java
+		}
+	}
+	repositories {
+	}
+}
