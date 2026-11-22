@@ -51,6 +51,11 @@ public final class NoTextWallConfigScreen {
 				.setTooltip(Component.translatable("config.notextwall.filter_system.tooltip"))
 				.setSaveConsumer(v -> config.filterSystemMessages = v)
 				.build());
+		filter.addEntry(entries.startBooleanToggle(Component.translatable("config.notextwall.allow_homes_plus"), config.allowHomesPlus)
+				.setDefaultValue(defaults.allowHomesPlus)
+				.setTooltip(Component.translatable("config.notextwall.allow_homes_plus.tooltip"))
+				.setSaveConsumer(v -> config.allowHomesPlus = v)
+				.build());
 
 		ConfigCategory notice = builder.getOrCreateCategory(Component.translatable("config.notextwall.category.notice"));
 		notice.addEntry(entries.startBooleanToggle(Component.translatable("config.notextwall.show_cancel_message"), config.showCancelMessage)

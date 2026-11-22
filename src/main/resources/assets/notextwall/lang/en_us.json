@@ -4,7 +4,6 @@
 	"notextwall.notice.lines": "%s lines",
 	"notextwall.notice.show": "[Show]",
 	"notextwall.notice.click": "Click to show the whole message",
-
 	"notextwall.command.set": "%s set to %s",
 	"notextwall.command.value": "%s is %s",
 	"notextwall.command.reloaded": "Config reloaded from config/notextwall.json",
@@ -12,8 +11,7 @@
 	"notextwall.command.no_limit": "no limit",
 	"notextwall.command.not_found": "[NoTextWall] No such hidden message (only the last 50 are remembered, until you quit the game).",
 	"notextwall.command.revealed": "Hidden message #%s:",
-	"notextwall.command.status": "Filter: %s, maxLength: %s, maxLines: %s, showCancelMessage: %s, showPreview: %s, filterPlayerChat: %s, filterSystemMessages: %s. Hidden this session: %s. Usage: /notextwall on|off|maxLength <n>|maxLines <n>|showCancelMessage <true|false>|showPreview <true|false>|filterPlayerChat <true|false>|filterSystemMessages <true|false>|last|show <id>|reload|reset",
-
+	"notextwall.command.status": "Filter: %s, maxLength: %s, maxLines: %s, showCancelMessage: %s, showPreview: %s, filterPlayerChat: %s, filterSystemMessages: %s, allowHomesPlus: %s. Hidden this session: %s. Usage: /notextwall on|off|maxLength <n>|maxLines <n>|showCancelMessage <true|false>|showPreview <true|false>|filterPlayerChat <true|false>|filterSystemMessages <true|false>|allowHomesPlus <true|false>|last|show <id>|reload|reset",
 	"config.notextwall.title": "No Text Wall",
 	"config.notextwall.category.filter": "Filter",
 	"config.notextwall.category.notice": "Notice",
@@ -30,5 +28,7 @@
 	"config.notextwall.show_cancel_message": "Show notice",
 	"config.notextwall.show_cancel_message.tooltip": "Print \"[NoTextWall] Long message hidden\" in place of the hidden message.",
 	"config.notextwall.show_preview": "Preview and [Show] button",
-	"config.notextwall.show_preview.tooltip": "Hover the notice to see the beginning of the message, click [Show] to print the whole message once."
+	"config.notextwall.show_preview.tooltip": "Hover the notice to see the beginning of the message, click [Show] to print the whole message once.",
+	"config.notextwall.allow_homes_plus": "Allow Homes+ messages",
+	"config.notextwall.allow_homes_plus.tooltip": "Do not hide /listhomes lists and other Homes+ messages, even when they are longer than the limit.\nTurn this off to filter them like any other message."
 }

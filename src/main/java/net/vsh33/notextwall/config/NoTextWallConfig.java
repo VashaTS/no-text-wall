@@ -39,6 +39,8 @@ public final class NoTextWallConfig {
 	public boolean filterPlayerChat = true;
 	/** Check system / server messages (Discord bridges, plugins, /say, /tellraw, ...). */
 	public boolean filterSystemMessages = true;
+	/** Do not hide Homes+ messages such as /listhomes (default on). */
+	public boolean allowHomesPlus = true;
 
 	public static NoTextWallConfig get() {
 		return instance;

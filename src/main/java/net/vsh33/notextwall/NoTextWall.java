@@ -53,7 +53,8 @@ public class NoTextWall implements ClientModInitializer {
 			return true;
 		}
 		NoTextWallConfig config = NoTextWallConfig.get();
-		MessageFilter.Reason reason = MessageFilter.check(text, kind, config);
+		boolean homesPlusMarker = hasHomesPlusMarker(message);
+		MessageFilter.Reason reason = MessageFilter.check(text, kind, config, homesPlusMarker);
 		if (reason == MessageFilter.Reason.NONE) {
 			return true;
 		}
@@ -102,4 +103,21 @@ public class NoTextWall implements ClientModInitializer {
 			bypass = previous;
 		}
 	}
+
+	/** True when the component tree carries the Homes+ insertion tag. */
+	static boolean hasHomesPlusMarker(Component message) {
+		if (message == null) {
+			return false;
+		}
+		if (MessageFilter.HOMESPLUS_MARKER.equals(message.getStyle().getInsertion())) {
+			return true;
+		}
+		for (Component sibling : message.getSiblings()) {
+			if (hasHomesPlusMarker(sibling)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 }

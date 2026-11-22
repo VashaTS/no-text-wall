@@ -55,6 +55,13 @@ dependencies {
 		localRuntime "maven.modrinth:modmenu:${project.modmenu_version}"
 	}
 
+	// Optional: put Homes+ on the client-gametest dedicated server (and client) to verify the exception.
+	// ./gradlew runClientGameTest -PsethomeJar=/path/to/sethome-1.1.2.jar
+	def sethomeJar = project.findProperty("sethomeJar") ?: "/workspace/sethome-26.2-out/sethome-1.1.2.jar"
+	if (file(sethomeJar).exists()) {
+		localRuntime files(sethomeJar)
+	}
+
 	testImplementation platform("org.junit:junit-bom:5.13.4")
 	testImplementation "org.junit.jupiter:junit-jupiter"
 	testRuntimeOnly "org.junit.platform:junit-platform-launcher"
