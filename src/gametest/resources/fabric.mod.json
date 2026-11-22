@@ -6,7 +6,8 @@
 	"environment": "client",
 	"entrypoints": {
 		"fabric-client-gametest": [
-			"net.vsh33.notextwall.test.NoTextWallClientTest"
+			"net.vsh33.notextwall.test.NoTextWallClientTest",
+			"net.vsh33.notextwall.test.HomesPlusCompatClientTest"
 		]
 	},
 	"depends": {

@@ -45,6 +45,7 @@ public final class NoTextWallCommand {
 				.then(boolOption("showPreview", (c, v) -> c.showPreview = v))
 				.then(boolOption("filterPlayerChat", (c, v) -> c.filterPlayerChat = v))
 				.then(boolOption("filterSystemMessages", (c, v) -> c.filterSystemMessages = v))
+				.then(boolOption("allowHomesPlus", (c, v) -> c.allowHomesPlus = v))
 				.then(literal("reload").executes(ctx -> {
 					NoTextWallConfig.load();
 					feedback(ctx, Component.translatable("notextwall.command.reloaded"));
@@ -97,6 +98,7 @@ public final class NoTextWallCommand {
 				onOff(c.showPreview),
 				onOff(c.filterPlayerChat),
 				onOff(c.filterSystemMessages),
+				onOff(c.allowHomesPlus),
 				num(HiddenMessages.size())));
 		return 1;
 	}

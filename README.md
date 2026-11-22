@@ -22,6 +22,7 @@ Port of my original [No Text Wall [Fabric] for 1.20.4 on CurseForge](https://leg
 - Changes apply **immediately**, no restart needed. On load, new options are added to an old config file automatically.
 - English and Polish translations, following the game language.
 - **Entirely client side**: it only affects the messages you see. Servers do not need it.
+- **Homes+ exception** (on by default): `/listhomes` lists and other Homes+ messages are not hidden, even when they are longer than the limit. Turn this off with `/notextwall allowHomesPlus false` if you want them filtered too.
 
 ## Screenshots
 
@@ -49,6 +50,7 @@ With the filter off (`/notextwall off`), the whole wall is shown:
 | `/notextwall showPreview <true\|false>` | hover preview and [Show] button on the notice |
 | `/notextwall filterPlayerChat <true\|false>` | check player chat messages |
 | `/notextwall filterSystemMessages <true\|false>` | check server/system messages |
+| `/notextwall allowHomesPlus <true\|false>` | leave Homes+ messages (such as `/listhomes`) visible even when they are long. Default: **true** |
 | `/notextwall last` | reveal the last hidden message |
 | `/notextwall show <id>` | reveal hidden message number `id` (the last 50 are remembered until you quit) |
 | `/notextwall reload` | reload `config/notextwall.json` after editing it by hand |
@@ -66,7 +68,8 @@ With the filter off (`/notextwall off`), the whole wall is shown:
   "showCancelMessage": true,
   "showPreview": true,
   "filterPlayerChat": true,
-  "filterSystemMessages": true
+  "filterSystemMessages": true,
+  "allowHomesPlus": true
 }
 ```
 
